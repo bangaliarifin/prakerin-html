@@ -25,8 +25,8 @@ Route::get('/latihan', function(){
 	return view('about');
 });
 
-Route::get('/about/1', function(){
-	return view('about');
+Route::get('/about', function(){
+	return view('hallo');
 });
 
 Route::get('/about/2', function(){
@@ -58,3 +58,36 @@ Route::get('/about/{nama}', function(){
 	return 'ini alamat about '.$a;
 });
 
+Route::get('/testmodel', function(){
+	$a = App\post::where('title','like','%cepat nikah%')->get();
+	return $a;
+});
+Route::get('/satumodel', function(){
+	$a = App\post::find(1);
+	return $a;
+});
+Route::get('/semuamodel', function(){
+	$a = App\post::all();
+	return $a;
+});
+Route::get('/gantimodel', function(){
+	$a = App\post::find(1);
+	$a ->delete();
+	
+});
+Route::get('/menambahmodel', function(){
+	$a = new App\post;
+	$a->title ="7 Amalan pembuka jodoh";
+	$a->content = "shalat malam, sedekah, puasa sunah, silahturahmi, senyum, dan tobat";
+	$a->save();
+	return $a;
+});
+Route::get('/rubahmodel', function(){
+	$a = App\post::find(2);
+	$a->title = "kelurga sakinah";
+	return $a;
+});
+
+Route::get('/cektampilan', function(){
+	return view('layouts.masters');
+});
