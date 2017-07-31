@@ -91,3 +91,27 @@ Route::get('/rubahmodel', function(){
 Route::get('/cektampilan', function(){
 	return view('layouts.masters');
 });
+
+Route::get('/halo', function(){
+	return view('index');
+});
+
+Route::get('/orangtua', function(){
+	$ortu = App\orangtua::all();
+	foreach ($ortu as $key ) {
+		echo $key->nama_ayah;
+		echo " dengan ";
+		echo $key->nama_ibu;
+		echo " mempunyai anak ";
+		foreach ($key->siswa as $data) {
+			echo "<li>". $data->nama. "</li>";
+		}
+		echo "<hr>";
+	}
+	
+});
+
+Route::get('/coba', 'myController@index');
+Route::get('/coba2', 'myController@tampilmodel');
+Route::get('/coba3', 'myController@tampilview');
+Route::get('/coba4', 'myController@percobaan');
